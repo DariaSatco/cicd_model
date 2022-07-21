@@ -1,0 +1,2 @@
+raw_data: data/census.csv
+preprocessed_data: data/census_cln.csv
