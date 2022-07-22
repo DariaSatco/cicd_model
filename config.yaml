@@ -1,2 +1,24 @@
 raw_data: data/census.csv
 preprocessed_data: data/census_cln.csv
+
+feature_engineering:
+  categorical_cols:
+    - workclass
+    - education
+    - marital-status
+    - occupation
+    - relationship
+    - race
+    - sex
+    - native-country
+  target_label_col: salary
+
+modelling:
+  test_size: 0.2
+  random_seed: 10
+  cv: 5
+  rf_params_grid:
+    n_estimators: [50, 100, 150, 200]
+    max_depth: [5, 7, 10]
+    min_samples_split: [50]
+    min_samples_leaf: [20]
