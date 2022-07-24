@@ -6,7 +6,6 @@ from src.feature_engineering import build_target
 
 from sklearn.model_selection import train_test_split
 
-
 if __name__=='__main__':
     
     with open('config.yaml') as f:
