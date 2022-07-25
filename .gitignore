@@ -131,3 +131,6 @@ dmypy.json
 # exclude Jupyter notebooks
 *.ipynb_checkpoints
 *.ipynb
+
+# VS code
+.vscode

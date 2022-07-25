@@ -1,6 +1,6 @@
 import pandas as pd
 from typing import Dict
-from src.feature_engineering import feature_engineering_pipeline
+from ..src.feature_engineering import feature_engineering_pipeline, build_target
 
 def test_column_names(data: pd.DataFrame):
     """
@@ -38,8 +38,15 @@ def test_label_without_nan(data: pd.DataFrame,
     assert data[params['feature_engineering']['target_label_col']].isnull().sum() == 0
 
 
-def test_binary_label(data: pd.DataFrame):
-    pass
+def test_binary_label(data: pd.DataFrame,
+                      params: Dict):
+    """
+    Check that there are only 2 unique values in 
+    target column to assure correct functionality 
+    of build_target function
+    """
+    y, lb = build_target(data, params['feature_engineering']['target_label_col'])
+    assert len(set(lb.classes_)) == 2
 
 
 def test_cat_to_num_feat_transform(data: pd.DataFrame,
