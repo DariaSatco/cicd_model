@@ -22,3 +22,4 @@ modelling:
     max_depth: [5, 7, 10]
     min_samples_split: [50]
     min_samples_leaf: [20]
+    class_weight: ['balanced']

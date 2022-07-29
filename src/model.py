@@ -64,6 +64,22 @@ def train_model(X_train: np.array,
     return search.best_estimator_
 
 
+def inference(model: sklearn.base.BaseEstimator, 
+              X: np.array):
+    """ 
+    Run model inferences and return the predictions.
+    
+    Args:
+        model (BaseEstimator) : trained machine learning model
+        X (np.array) : data used for prediction
+    
+    Returns:
+        preds (np.array) : predictions from the model
+    """
+    preds = model.predict(X)
+    return preds
+
+
 def compute_model_metrics(y: np.array, preds: np.array):
     """
     Validates the trained machine learning model using precision, recall, and F1.
@@ -83,19 +99,7 @@ def compute_model_metrics(y: np.array, preds: np.array):
     recall = recall_score(y, preds, zero_division=1)
     
     return precision, recall, fbeta
-
-
-def inference(model: sklearn.base.BaseEstimator, 
-              X: np.array):
-    """ 
-    Run model inferences and return the predictions.
     
-    Args:
-        model (BaseEstimator) : trained machine learning model
-        X (np.array) : data used for prediction
-    
-    Returns:
-        preds (np.array) : predictions from the model
-    """
-    preds = model.predict(X)
-    return preds
+
+def evaluate_model_by_slices():
+    pass
