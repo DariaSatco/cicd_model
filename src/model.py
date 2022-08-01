@@ -1,11 +1,16 @@
 import numpy as np
-from typing import Dict
+import pandas as pd
+from typing import Dict, List
 
 import sklearn
 from sklearn.model_selection import GridSearchCV
 from sklearn.pipeline import Pipeline
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import fbeta_score, precision_score, recall_score
+
+from aequitas.group import Group
+from aequitas.bias import Bias 
+from aequitas.fairness import Fairness
 
 from .feature_engineering import feature_engineering_pipeline
 
@@ -101,5 +106,35 @@ def compute_model_metrics(y: np.array, preds: np.array):
     return precision, recall, fbeta
     
 
-def evaluate_model_by_slices():
-    pass
+def evaluate_model_by_slices(X: pd.DataFrame, 
+                             y: np.array, 
+                             y_preds: np.array,
+                             slicing_cols: List,
+                             parity_metric: str = 'TPR'):
+    
+    df_aq = X.copy()
+    df_aq['label_value'] = list(y)
+    df_aq['score'] = list(y_preds)
+    
+    # calculating confusion matrix and corresponding metrics 
+    # across different subsegments formed by feature value cuts
+    g = Group()
+    xtab, _ = g.get_crosstabs(df_aq, attr_cols=slicing_cols)
+
+    # filter out small subgroups & groups with low rate of positive cases
+    xtab_filtered = xtab[ (xtab['group_size']>=100) & (xtab['prev']>=0.1)].reset_index(drop=True).copy()
+
+    # collecting disparities across slices and metrics
+    # Disparity is checked versus biggest subsegment (major)
+    b = Bias()
+    majority_bdf = b.get_disparity_major_group(xtab_filtered, original_df=df_aq)
+
+    # calculating fairness across different subsegments
+    f = Fairness()
+    fdf = f.get_group_value_fairness(majority_bdf)
+
+    return fdf[['attribute_name', 'attribute_value', 
+                parity_metric.lower()+'_disparity', 
+                parity_metric+' Parity']]
+
+
