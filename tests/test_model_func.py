@@ -1,6 +1,6 @@
 import pandas as pd
 from typing import Dict
-from ..src.feature_engineering import feature_engineering_pipeline, build_target
+from ..src.modules.feature_engineering import feature_engineering_pipeline, build_target
 
 def test_column_names(data: pd.DataFrame):
     """

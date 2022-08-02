@@ -1,5 +1,6 @@
 import numpy as np
 import pandas as pd
+import pickle
 from typing import Dict, List
 
 import sklearn
@@ -80,6 +81,24 @@ def train_model(X_train: np.array,
     return search.best_estimator_
 
 
+def save_model(model: sklearn.base.BaseEstimator,
+               path: str):
+    """
+    Utility function to save model with pickle
+    """
+    with open(path, 'wb') as file:
+        pickle.dump(model, file)
+
+
+def load_model(path: str):
+    """
+    Utility function to load saved model
+    """
+    with open(path, 'rb') as file:
+        model = pickle.load(file)
+    return model
+
+
 def inference(model: sklearn.base.BaseEstimator, 
               X: np.array):
     """ 
@@ -94,6 +113,22 @@ def inference(model: sklearn.base.BaseEstimator,
     """
     preds = model.predict(X)
     return preds
+
+
+def map_label(y: np.array,
+              label_encoder: sklearn.base.BaseEstimator):
+    """
+    Map binary predictions 1/0 into original label format
+
+    Args:
+        y (array)                     : binary predictions from model predict
+        label_encoder (sklearn model) : encoder of original label column into binary
+
+    Returns:
+        array with decoded labels
+    """
+    y_decoded = label_encoder.inverse_transform(y)
+    return y_decoded
 
 
 def compute_model_metrics(y: np.array, preds: np.array):

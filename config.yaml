@@ -1,6 +1,9 @@
-raw_data: data/census.csv
-preprocessed_data: data/census_cln.csv
-
+paths:  
+  raw_data: data/census.csv
+  preprocessed_data: data/census_cln.csv
+  label_encoder: model/label_encoder.pkl
+  pretrained_model: model/pretrained_model.pkl
+  
 feature_engineering:
   categorical_cols:
     - workclass

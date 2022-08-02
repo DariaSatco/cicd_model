@@ -23,8 +23,8 @@ if __name__=="__main__":
     with open('config.yaml') as f:
         params = yaml.safe_load(f)
     
-    raw_data_pth = params['raw_data']
-    prep_data_pth = params['preprocessed_data']
+    raw_data_pth = params['paths']['raw_data']
+    prep_data_pth = params['paths']['preprocessed_data']
 
     clean_data = remove_whitespc(raw_data_pth)
     clean_data.to_csv(prep_data_pth, index=False)
