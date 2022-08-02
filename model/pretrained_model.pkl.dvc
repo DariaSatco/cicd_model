@@ -1,0 +1,4 @@
+outs:
+- md5: b8179ae8b2c8b3c3d71e19873e8ce38a
+  size: 2886190
+  path: pretrained_model.pkl
