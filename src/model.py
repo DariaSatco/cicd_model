@@ -17,7 +17,18 @@ from .feature_engineering import feature_engineering_pipeline
 
 def _build_param_grid(input_params: Dict,
                      step_name: str) -> Dict:
-    
+    """
+    Utility function to compile parameters names for
+    sklearn pipeline GridSearchCV
+
+    Args:
+        input_params (Dict) : dictionary with parameters grid
+        step_name (string)  : name of pipeline step
+
+    Returns:
+        Updated dictionary with parameters with the right name of
+        keys
+    """
     output_params = {}
     for key in input_params:
         output_params[step_name + '__' + key] = input_params[key]
@@ -111,7 +122,24 @@ def evaluate_model_by_slices(X: pd.DataFrame,
                              y_preds: np.array,
                              slicing_cols: List,
                              parity_metric: str = 'TPR'):
-    
+    """
+    Evaluate model fairness by comparing parity_metric across
+    different data slices formed by slicing_cols unique values
+
+    Args:
+        X (Dataframe)           : features table
+        y (array)               : labels array
+        y_preds (array)         : predictions array
+        slicing_cols (List)     : list of column names (from X)
+        parity_metric (string)  : name of metric of interest. Should be one of
+                            the following: 'FDR', 'FPR', 'FOR', 'FNR', 'TPR', 
+                            'TNR', 'NPV'
+
+
+    Returns:
+        Dataframe with disparity value and fairness outcome (True/False) vs
+        major subgroup across each column from slicing_cols
+    """
     df_aq = X.copy()
     df_aq['label_value'] = list(y)
     df_aq['score'] = list(y_preds)

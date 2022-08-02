@@ -25,7 +25,8 @@ if __name__=='__main__':
     # split train/test 
     X_train, X_test, y_train, y_test = train_test_split(X, y, 
                                                         test_size=model_params['test_size'],
-                                                        random_state=model_params['random_seed'])
+                                                        random_state=model_params['random_seed'],
+                                                        stratify=y)
     
     # fit model
     best_model = train_model(X_train, y_train,
@@ -47,4 +48,5 @@ if __name__=='__main__':
     disparity_tab = evaluate_model_by_slices(X_test, y_test, y_test_preds,
                                             slicing_cols = eval_params['slicing_cols'],
                                             parity_metric = eval_params['parity_metric'])
+
     
