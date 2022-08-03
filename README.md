@@ -53,4 +53,8 @@ We've chosen Random Forest classifier to solve the problem and used features as 
 ## Deployment details
 
 We set up CI/CD pipeline with the help of:
-* Github Actions: CI (continuous integration) includes automatic run of unit tests with pytest after each push to main branch. Check the list of tests in `tests/test_model_func.py`. 
+* Github Actions: CI (continuous integration) includes automatic run of unit tests with pytest after each push to main branch. Check CI steps in `.github/workflows/python-app.yml`, which includes: 
+    - set up of AWS connection
+    - pull of data from AWS S3 remote storage with DVC
+    -
+    - check the list of tests in `tests/test_model_func.py` 
