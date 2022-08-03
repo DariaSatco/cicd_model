@@ -43,6 +43,18 @@ We consider model quality across 3 metrics:
 * recall
 * F1-score
 
+Metrics are loged by DVC into `evaluation.json`. See example of the output below:
+```json
+{
+    "train precision": 0.538830297219559,
+    "train recall": 0.895855472901169,
+    "train f1": 0.6729195769307523,
+    "test precision": 0.5485714285714286,
+    "test recall": 0.884479092841956,
+    "test f1": 0.6771568095496473
+}
+```
+
 Within the project context we don't have preference over precision or recall, this is why we are interested in maximizing F1 score. Moving forward, if there are specific use cases how to treat individuals based on predictions, we can be more interested to minimize amount of positive cases we misclassify (to maximize precision), or to increase amount of positive cases we are able to catch (to maximize recall).
 
 ### Caveats and Recommendations
@@ -73,6 +85,13 @@ We set up CI/CD pipeline with the help of:
 ## How to run the app locally
 
 * Set up environment with conda using `environment.yml` or with `requirements.txt`
-* Pull data with DVC by running: `dvc pull`
+* Pull data with DVC by running: `dvc pull`. See below the list of files tracked, which you'll get after `pull` done:
+![list of files tracked](/imgs/dvcdag.png)
 * Start the app: `uvicorn app:app --reload`. In my case it is running on: http://127.0.0.1:8000
-* Check API docs via http://127.0.0.1:8000/docs or see GET and POST examples in `test_heroku_app.ipynb`
+* Check API docs via http://127.0.0.1:8000/docs
+![API docs](/imgs/example.png)
+
+or see GET and POST examples in `test_heroku_app.ipynb`:
+
+![GET](/imgs/live-get.png)
+![POST](/imgs/live-post.png)

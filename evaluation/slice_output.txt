@@ -1,0 +1,21 @@
+attribute_name,attribute_value,fnr_disparity,FNR Parity
+workclass,?,1.1222718253968254,True
+workclass,Federal-gov,0.6965825123152709,False
+workclass,Local-gov,0.9909871967654986,True
+workclass,Private,1.0,True
+workclass,Self-emp-inc,0.22445436507936506,False
+workclass,Self-emp-not-inc,1.0315349544072947,True
+workclass,State-gov,0.9923245614035087,True
+education,Assoc-acdm,1.2890243902439023,False
+education,Assoc-voc,0.4532833020637899,False
+education,Bachelors,0.8224898626157477,True
+education,HS-grad,1.0,True
+education,Masters,0.49657440394628666,False
+education,Prof-school,0.1753774680603949,False
+education,Some-college,0.8989821394276936,True
+marital-status,Married-civ-spouse,1.0,True
+race,Asian-Pac-Islander,1.2693653173413293,False
+race,Black,1.891006551518761,False
+race,White,1.0,True
+sex,Female,3.652928839681998,False
+sex,Male,1.0,True
