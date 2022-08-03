@@ -48,3 +48,9 @@ Within the project context we don't have preference over precision or recall, th
 ### Caveats and Recommendations
 
 We've chosen Random Forest classifier to solve the problem and used features as is with only basic transformation from categorical to numerical format. Present model has satisfactory quality and can be further improved by playing with feature engineering process and testing different architectures of classifier itself. Since model quality is not the focus of the project we leave it up to you to further enhance the model.  
+
+
+## Deployment details
+
+We set up CI/CD pipeline with the help of:
+* Github Actions: CI (continuous integration) includes automatic run of unit tests with pytest after each push to main branch. Check the list of tests in `tests/test_model_func.py`. 

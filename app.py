@@ -9,6 +9,13 @@ sys.path.append(os.path.dirname(os.path.realpath(__file__)))
 
 from src.modules.model import load_model
 
+# pull data with DVC
+if "DYNO" in os.environ and os.path.isdir(".dvc"):
+    os.system("dvc config core.no_scm true")
+    if os.system("dvc pull") != 0:
+        exit("dvc pull failed")
+    os.system("rm -r .dvc .apt/usr/lib/dvc")
+
 app = FastAPI()
 
 class Sample(BaseModel):
@@ -48,13 +55,4 @@ async def run_inference(sample: Sample):
     prediction = label_encoder.inverse_transform(encoded_prediction)[0]
 
     return prediction
-
-
-if __name__=='__main__':
-
-    # pull data with DVC
-    if "DYNO" in os.environ and os.path.isdir(".dvc"):
-        os.system("dvc config core.no_scm true")
-        if os.system("dvc pull") != 0:
-            exit("dvc pull failed")
-        os.system("rm -r .dvc .apt/usr/lib/dvc")
+    
