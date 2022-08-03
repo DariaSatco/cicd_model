@@ -36,3 +36,8 @@ evaluation:
     - race
     - sex
   parity_metric: FNR # One of the following: 'FDR', 'FPR', 'FOR', 'FNR', 'TPR', 'TNR', 'NPV'
+  threshold:
+    recall: 0.6
+    precision: 0.5
+    fbeta: 0.5
+    parity: 0.5 

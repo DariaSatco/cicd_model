@@ -6,8 +6,7 @@ from dvclive import Live
 from modules.model import (train_model,
                            compute_model_metrics,
                            inference,
-                           save_model,
-                           evaluate_model_by_slices)
+                           save_model)
 from modules.feature_engineering import build_target
 
 from sklearn.model_selection import train_test_split
@@ -80,12 +79,4 @@ if __name__ == '__main__':
         recall_test,
         'f1=',
         fbeta_test)
-
-    # evaluate model fairness
-    eval_params = params['evaluation']
-    disparity_tab = evaluate_model_by_slices(
-        X_test,
-        y_test,
-        y_test_preds,
-        slicing_cols=eval_params['slicing_cols'],
-        parity_metric=eval_params['parity_metric'])
+    
