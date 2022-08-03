@@ -2,6 +2,7 @@ import pandas as pd
 import csv
 import yaml
 
+from sklearn.model_selection import train_test_split
 
 def remove_whitespc(csv_path: str) -> pd.DataFrame:
     """
@@ -23,10 +24,18 @@ if __name__ == "__main__":
 
     with open('model_config.yaml') as f:
         params = yaml.safe_load(f)
-    print(params)
 
     raw_data_pth = params['paths']['raw_data']
     prep_data_pth = params['paths']['preprocessed_data']
+    test_data_pth = params['paths']['test_data']
 
     clean_data = remove_whitespc(raw_data_pth)
-    clean_data.to_csv(prep_data_pth, index=False)
+    
+    # keep piece of data for unit tests to evaluate updated model
+    train_data, test_data = train_test_split(clean_data, 
+                                             test_size=0.1, 
+                                             stratify=clean_data['salary'],
+                                             random_state=10)
+
+    train_data.to_csv(prep_data_pth, index=False)
+    test_data.to_csv(test_data_pth, index=False)
