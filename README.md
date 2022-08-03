@@ -69,3 +69,10 @@ We set up CI/CD pipeline with the help of:
 * [Get started DVC guide](https://dvc.org/doc/start) 
 * [Heroku App repo](https://dashboard.heroku.com/apps/census-predict-model)
 * App URL: https://census-predict-model.herokuapp.com/
+
+## How to run the app locally
+
+* Set up environment with conda using `environment.yml` or with `requirements.txt`
+* Pull data with DVC by running: `dvc pull`
+* Start the app: `uvicorn app:app --reload`. In my case it is running on: http://127.0.0.1:8000
+* Check API docs via http://127.0.0.1:8000/docs or see GET and POST examples in `test_heroku_app.ipynb`
