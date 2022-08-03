@@ -4,13 +4,15 @@ import yaml
 
 @pytest.fixture(scope='session')
 def data():
-    data_path = 'data/census_cln.csv'
+    with open('model_config.yaml') as f:
+        params = yaml.safe_load(f)
+    data_path = params['paths']['preprocessed_data']
     df = pd.read_csv(data_path)
     return df
 
 
 @pytest.fixture(scope='session')
 def params():
-    with open('config.yaml') as f:
+    with open('model_config.yaml') as f:
         params = yaml.safe_load(f)
     return params

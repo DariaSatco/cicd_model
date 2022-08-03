@@ -21,8 +21,9 @@ def remove_whitespc(csv_path: str) -> pd.DataFrame:
 
 if __name__ == "__main__":
 
-    with open('config.yaml') as f:
+    with open('model_config.yaml') as f:
         params = yaml.safe_load(f)
+    print(params)
 
     raw_data_pth = params['paths']['raw_data']
     prep_data_pth = params['paths']['preprocessed_data']

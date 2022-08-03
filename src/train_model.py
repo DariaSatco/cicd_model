@@ -15,7 +15,7 @@ from sklearn.model_selection import train_test_split
 if __name__ == '__main__':
 
     # load inputs
-    with open('config.yaml') as f:
+    with open('model_config.yaml') as f:
         params = yaml.safe_load(f)
 
     clean_df = pd.read_csv(params['paths']['preprocessed_data'])

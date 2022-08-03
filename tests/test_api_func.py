@@ -1,12 +1,12 @@
-from app import app
 from fastapi.testclient import TestClient
 import simplejson
 
 import sys
 import os
-sys.path.append(os.path.dirname(os.path.realpath(__file__)))
+sys.path.append(os.path.realpath(os.curdir))
 
 # Import app from app.py
+from app import app
 
 # Instantiate the testing client with our app
 client = TestClient(app)

@@ -55,19 +55,3 @@ def feature_engineering_pipeline(categorical_cols: List = [],
     )
 
     return preprocessor
-
-
-if __name__ == 'main':
-
-    with open('config.yaml') as f:
-        params = yaml.safe_load(f)
-
-    clean_df = pd.read_csv(params['preprocessed_data'])
-
-    feat_params = params['feature_engineering']
-    X = clean_df.drop(columns=feat_params['target_label_col'])
-    feat_preproc = feature_engineering_pipeline(
-        categorical_cols=feat_params['categorical_cols'])
-    features = feat_preproc.fit_transform(X)
-
-    y = build_target(clean_df, label_col=feat_params['target_label_col'])

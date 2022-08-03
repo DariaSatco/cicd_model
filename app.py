@@ -36,7 +36,7 @@ async def root():
 @app.post("/predict/")
 async def run_inference(sample: Sample):
 
-    with open('config.yaml') as f:
+    with open('model_config.yaml') as f:
         params = yaml.safe_load(f)
 
     model = load_model(params['paths']['pretrained_model'])
