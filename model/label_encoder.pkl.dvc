@@ -1,4 +1,4 @@
 outs:
-- md5: f8b77327fe9682186ee328bf6fd752e9
-  size: 358
+- md5: 36db17cb2a72405376e88bd45f0d664b
+  size: 399
   path: label_encoder.pkl
