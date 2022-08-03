@@ -56,5 +56,16 @@ We set up CI/CD pipeline with the help of:
 * Github Actions: CI (continuous integration) includes automatic run of unit tests with pytest after each push to main branch. Check CI steps in `.github/workflows/python-app.yml`, which includes: 
     - set up of AWS connection
     - pull of data from AWS S3 remote storage with DVC
-    -
-    - check the list of tests in `tests/test_model_func.py` 
+    - linting with `flake8`
+    - run of tests from `tests/test_model_func.py` with `pytest`
+* Deployment of the App with Heroku: CD (continuous deployment) is being set up via integration of Heroku app with Github repo and automatic deployment, which includes:
+    - set up of Python and DVC buildpacks
+    - set up of AWS connection
+    - pull of data from AWS S3 remote storage with DVC
+    - app launch with `uvicorn`
+
+## Sources
+* [Starter pack](https://github.com/udacity/nd0821-c3-starter-code/tree/master/starter) from Udacity
+* [Get started DVC guide](https://dvc.org/doc/start) 
+* [Heroku App repo](https://dashboard.heroku.com/apps/census-predict-model)
+* App URL: https://census-predict-model.herokuapp.com/

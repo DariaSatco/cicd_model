@@ -134,3 +134,6 @@ dmypy.json
 
 # VS code
 .vscode
+
+# keep notebook with App test
+!test_heroku_app.ipynb
