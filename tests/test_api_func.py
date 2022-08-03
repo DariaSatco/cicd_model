@@ -1,11 +1,16 @@
+from app import app
 from fastapi.testclient import TestClient
 import simplejson
 
+import sys
+import os
+sys.path.append(os.path.dirname(os.path.realpath(__file__)))
+
 # Import app from app.py
-from ..app import app
 
 # Instantiate the testing client with our app
 client = TestClient(app)
+
 
 def test_api_get_root():
     """
@@ -18,24 +23,24 @@ def test_api_get_root():
 
 def test_api_post_predict_known_sample():
     """
-    Test that model inference output has the right format 
+    Test that model inference output has the right format
     and returns predicted outcome label
     """
     sample = {'age': 29,
-                'workclass': 'Private',
-                'fnlgt': 236436,
-                'education': 'HS-grad',
-                'education-num': 9,
-                'marital-status': 'Never-married',
-                'occupation': 'Adm-clerical',
-                'relationship': 'Not-in-family',
-                'race': 'White',
-                'sex': 'Female',
-                'capital-gain': 0,
-                'capital-loss': 0,
-                'hours-per-week': 40,
-                'native-country': 'United-States'
-            }
+              'workclass': 'Private',
+              'fnlgt': 236436,
+              'education': 'HS-grad',
+              'education-num': 9,
+              'marital-status': 'Never-married',
+              'occupation': 'Adm-clerical',
+              'relationship': 'Not-in-family',
+              'race': 'White',
+              'sex': 'Female',
+              'capital-gain': 0,
+              'capital-loss': 0,
+              'hours-per-week': 40,
+              'native-country': 'United-States'
+              }
     body = simplejson.dumps(sample)
 
     r = client.post("/predict/", data=body)
@@ -49,20 +54,20 @@ def test_api_post_predict_wrong_input():
     Test validation of json input
     """
     sample = {'age': 29,
-                'workclass': 'Private',
-                'fnlgt': 236436,
-                'education': 'HS-grad',
-                'education-num': 'WRONG INPUT HERE',
-                'marital-status': 'Never-married',
-                'occupation': 'Adm-clerical',
-                'relationship': 'Not-in-family',
-                'race': 'White',
-                'sex': 'Female',
-                'capital-gain': 0,
-                'capital-loss': 0,
-                'hours-per-week': 40,
-                'native-country': 'United-States'
-            }
+              'workclass': 'Private',
+              'fnlgt': 236436,
+              'education': 'HS-grad',
+              'education-num': 'WRONG INPUT HERE',
+              'marital-status': 'Never-married',
+              'occupation': 'Adm-clerical',
+              'relationship': 'Not-in-family',
+              'race': 'White',
+              'sex': 'Female',
+              'capital-gain': 0,
+              'capital-loss': 0,
+              'hours-per-week': 40,
+              'native-country': 'United-States'
+              }
     body = simplejson.dumps(sample)
 
     r = client.post("/predict/", data=body)

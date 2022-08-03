@@ -3,7 +3,11 @@ from pydantic import BaseModel, Field
 import yaml
 import pandas as pd
 
-from .src.modules.model import load_model
+import sys
+import os
+sys.path.append(os.path.dirname(os.path.realpath(__file__)))
+
+from src.modules.model import load_model
 
 app = FastAPI()
 
@@ -44,3 +48,12 @@ async def run_inference(sample: Sample):
     prediction = label_encoder.inverse_transform(encoded_prediction)[0]
 
     return prediction
+
+
+if __name__=='__main__':
+
+    if "DYNO" in os.environ and os.path.isdir(".dvc"):
+        os.system("dvc config core.no_scm true")
+        if os.system("dvc pull") != 0:
+            exit("dvc pull failed")
+        os.system("rm -r .dvc .apt/usr/lib/dvc")

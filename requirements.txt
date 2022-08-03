@@ -1,0 +1,10 @@
+aequitas==0.42.0
+dvclive==0.10.0
+fastapi==0.79.0
+numpy==1.23.1
+pandas==1.4.3
+pydantic==1.9.1
+pytest==7.1.2
+PyYAML==6.0
+scikit_learn==1.1.1
+simplejson==3.17.6
