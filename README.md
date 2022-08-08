@@ -57,6 +57,11 @@ Metrics are loged by DVC into `evaluation.json`. See example of the output below
 
 Within the project context we don't have preference over precision or recall, this is why we are interested in maximizing F1 score. Moving forward, if there are specific use cases how to treat individuals based on predictions, we can be more interested to minimize amount of positive cases we misclassify (to maximize precision), or to increase amount of positive cases we are able to catch (to maximize recall).
 
+### Ethical considerations
+
+When we work with models predicting outcomes based on demographical data we should pay attention not only on model performance metrics as discussed above but also on model bias. It can be the case that even if overall model quality is high it can underperform on specific subsegments due to wrong patterns learned. It's much better to control metrics on subgroups and assure that there is less than 20\% absolute deviation in precision/recall between different subgroups.  
+
+
 ### Caveats and Recommendations
 
 We've chosen Random Forest classifier to solve the problem and used features as is with only basic transformation from categorical to numerical format. Present model has satisfactory quality and can be further improved by playing with feature engineering process and testing different architectures of classifier itself. Since model quality is not the focus of the project we leave it up to you to further enhance the model.  
