@@ -27,6 +27,26 @@ class Sample(BaseModel):
     hours_per_week: int = Field(alias='hours-per-week')
     native_country: str = Field(alias='native-country')
 
+    class Config:
+        schema_extra = {
+            'example': {
+                'age': 47,
+                'workclass': 'Private',
+                'fnlgt': 102308,
+                'education': 'Masters',
+                'education-num': 14,
+                'marital-status': 'Married-civ-spouse',
+                'occupation': 'Exec-managerial',
+                'relationship': 'Husband',
+                'race': 'White',
+                'sex': 'Male',
+                'capital-gain': 99999,
+                'capital-loss': 0,
+                'hours-per-week': 50,
+                'native-country': 'United-States'
+            }
+        }
+
 
 @app.get("/")
 async def root():
